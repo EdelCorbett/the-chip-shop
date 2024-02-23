@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # required for allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -59,13 +64,29 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request', # required for allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1 # required for allauth
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # required for allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # auth using username or email
+ACCOUNT_EMAIL_REQUIRED = True # email is required
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # email verification is mandatory
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True # Enter password twice during signup
+ACCOUNT_USERNAME_MIN_LENGTH = 4 # required for allauth
+LOGIN_URL = '/accounts/login/' # login url
+LOGIN_REDIRECT_URL = '/success' # redirect to home page after login
 
 WSGI_APPLICATION = 'the_chip_shop.wsgi.application'
 
