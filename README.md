@@ -1,4 +1,4 @@
-# the-chip-shop
+# The Chip Shop
 A online ordering site for a fast-food takeaway
 ### Wireframes
 ---
