@@ -86,7 +86,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # email verification is mandatory
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True # Enter password twice during signup
 ACCOUNT_USERNAME_MIN_LENGTH = 4 # required for allauth
 LOGIN_URL = '/accounts/login/' # login url
-LOGIN_REDIRECT_URL = '/success' # redirect to home page after login
+LOGIN_REDIRECT_URL = '/' # redirect to home page after login
 
 WSGI_APPLICATION = 'the_chip_shop.wsgi.application'
 
